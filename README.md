@@ -1,117 +1,130 @@
-🖼️ AI Image Restoration & Upscaling Platform
+# 🖼️ AI Image Restoration & Upscaling Platform 🚀
 
-A modern, full-stack Next.js + TypeScript application that allows users to restore old or damaged images and upscale images using AI — fast, secure, and user-friendly.
+A modern, full-stack **Next.js + TypeScript** application that allows users to **restore old or damaged images** and **upscale images using AI**, with secure authentication and a clean dashboard experience.
 
-Built with Replicate AI models, Better Auth, and a clean dashboard-based UI.
+This project leverages **Replicate AI models**, **Better Auth**, and a scalable backend to deliver high-quality image enhancement.
 
-✨ What This App Does
+---
 
-🧑‍🎨 Restore old, blurry, or damaged photos
+## ✨ Features
 
-🔍 Upscale images (2× / 4×) while preserving quality
+- 🧑‍🎨 **AI Image Restoration**
+  - Restore old, blurry, or damaged images
+  - Face enhancement & background improvement
 
-📜 Keep a personal history of restored & upscaled images
+- 🔍 **AI Image Upscaling**
+  - Increase resolution (2× / 4×)
+  - Preserve sharpness and fine details
 
-⬇️ Download images or copy image URLs
+- 📜 **History System**
+  - View restored & upscaled images
+  - Download images or copy image URLs
 
-🔐 Secure, user-based access with authentication
+- 🔐 **Secure Authentication**
+  - User-based data isolation
+  - Protected dashboard routes
 
-🤖 AI Models Used
-🧠 Image Restoration
+- ⚡ **Modern UI**
+  - Clean dashboard layout
+  - Responsive & fast experience
 
-Model:
-sczhou/codeformer
+---
 
-Use cases
+## 🤖 AI Models Used
 
-Fix damaged photos
+### 🧠 Image Restoration
+**Model:**  
+`sczhou/codeformer`
 
-Enhance faces
+**Purpose**
+- Restore old or damaged images
+- Enhance faces
+- Improve background clarity
 
-Improve background clarity
+**Key Parameters**
+- `upscale`
+- `face_upsample`
+- `background_enhance`
+- `codeformer_fidelity`
 
-Key Parameters
+---
 
-upscale
+### 🔎 Image Upscaling
+**Model:**  
+`nightmareai/real-esrgan`
 
-face_upsample
+**Purpose**
+- Increase image resolution (2× / 4×)
+- Preserve sharpness and details
+- Suitable for general images
 
-background_enhance
+**Key Parameters**
+- `scale`
+- `face_enhance`
 
-codeformer_fidelity
+---
 
-🔎 Image Upscaling
+## 🛠️ Tech Stack
 
-Model:
-nightmareai/real-esrgan
+### 🎨 Frontend
+- **Next.js (App Router)**
+- **TypeScript**
+- **Tailwind CSS**
+- **Better Auth (Client)**
+- **Lucide Icons**
+- **Sonner (Toast Notifications)**
 
-Use cases
+### ⚙️ Backend
+- **Next.js API Routes**
+- **TypeScript**
+- **Replicate SDK**
+- **Better Auth (Server)**
+- **PostgreSQL (Neon)**
+- **Drizzle ORM**
 
-Increase resolution (2× / 4×)
+---
 
-Preserve sharpness & details
+## 🔐 Authentication (Better Auth)
 
-Suitable for general images
+Authentication is fully handled using **Better Auth** on both frontend and backend.
 
-Key Parameters
+### Authentication Features
+- Secure sessions
+- Protected routes
+- Server-side & client-side checks
+- User-based data isolation
 
-scale
+### 🔒 Protected Routes
+- `/dashboard`
+- `/dashboard/upload`
+- `/dashboard/upscale`
+- `/dashboard/history`
+- `/dashboard/upscalehistory`
 
-face_enhance
+Unauthenticated users are automatically redirected to `/login`.
 
-🛠️ Tech Stack
-🎨 Frontend
+---
 
-Next.js (App Router)
+## 📁 Project Structure
 
-TypeScript
-
-Tailwind CSS
-
-Better Auth (Client)
-
-Lucide Icons
-
-Sonner (Toast Notifications)
-
-⚙️ Backend
-
-Next.js API Routes
-
-TypeScript
-
-Replicate SDK
-
-Better Auth (Server)
-
-PostgreSQL (Neon)
-
-Drizzle ORM
-
-🔐 Authentication (Better Auth)
-
-Authentication is fully handled using Better Auth on both frontend and backend.
-
-Features
-
-Secure sessions
-
-Protected routes
-
-Server & client auth checks
-
-User-based data isolation
-
-🔒 Protected Routes
-
-/dashboard
-
-/dashboard/upload
-
-/dashboard/upscale
-
-/dashboard/history
-
-/dashboard/upscalehistory
-
-Unauthenticated users are automatically redirected to /login.
+```bash
+ai-image-restoration-upscaler/
+├─ app/
+│  ├─ api/
+│  │  ├─ restore/
+│  │  ├─ upscale/
+│  │  └─ auth/
+│  ├─ dashboard/
+│  │  ├─ upload/
+│  │  ├─ upscale/
+│  │  ├─ history/
+│  │  └─ upscalehistory/
+│  ├─ login/
+│  └─ register/
+│
+├─ components/
+├─ lib/
+├─ db/
+├─ public/
+├─ README.md
+└─ package.json
