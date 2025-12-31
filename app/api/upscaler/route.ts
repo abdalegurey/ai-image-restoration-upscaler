@@ -27,7 +27,7 @@ export async function POST(req: Request) {
       },
     });
 
-    const resultimage=output.url()
+    const resultimage= Array.isArray(output) ? output[0] : output;
    
      const id = randomUUID(); // 
 
