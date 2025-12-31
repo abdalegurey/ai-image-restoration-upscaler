@@ -1,0 +1,1 @@
+ALTER TABLE "upscaler " RENAME TO "upscaler";
