@@ -38,16 +38,16 @@ const output = await replicate.run(
 );
 
 
-    // const resultUrl = Array.isArray(output) ? output[0] : output;
-    let resultUrl: string;
+     const resultUrl = Array.isArray(output) ? output[0] : output;
+//     let resultUrl: string;
 
-if (Array.isArray(output)) {
-  // Haddii output array ah
-  resultUrl = output[0]?.url || output[0];
-} else {
-  // Haddii output object ah
-  resultUrl = (output as any)?.url || output as string;
-}
+// if (Array.isArray(output)) {
+//   // Haddii output array ah
+//   resultUrl = output[0]?.url || output[0];
+// } else {
+//   // Haddii output object ah
+//   resultUrl = (output as any)?.url || output as string;
+// }
 
     
 // let resultUrl: string;
