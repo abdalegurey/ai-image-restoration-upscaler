@@ -41,7 +41,18 @@ const output = await replicate.run(
 );
 
 
-     //const resultUrl = Array.isArray(output) ? output[0] : output;
+    //  const resultUrl = Array.isArray(output) ? output[0].url : output;
+
+//     let resultUrl: string;
+
+// if (Array.isArray(output)) {
+//   resultUrl = output[0]; // CodeFormer badanaa array ayuu soo celiyaa
+// } else {
+//   resultUrl = output as string;
+// }
+
+
+//console.log(" resultUrl", resultUrl)
 //     let resultUrl: string;
 
 // if (Array.isArray(output)) {
@@ -53,15 +64,41 @@ const output = await replicate.run(
 // }
 
     
-let resultUrl: string;
-if (Array.isArray(output)) {
-  resultUrl = output[0].url || output[0]; 
-} else if (output.url()) {
-  resultUrl = output.url();
-} else {
-  resultUrl = output.url() as string;
-}
+// let resultUrl: string;
+// if (Array.isArray(output)) {
+//   resultUrl = output[0].url || output[0]; 
+// } else if (output.url()) {
+//   resultUrl = output.url();
+// } else {
+//   resultUrl = output.url() as string;
+// }
+
+// let resultUrl: string;
+
+// if (Array.isArray(output)) {
+//   const first = output[0] as any;
+//   resultUrl = typeof first === "string" ? first : first.url;
+// } else {
+//   resultUrl = output as string;
+// }
+
+
+const resultUrl = (output as any).url();
 //  const resultUrl = output[0];
+
+// let resultUrl: string;
+
+// if (Array.isArray(output)) {
+//   const first = output[0] as any;
+//   resultUrl = typeof first === "string" ? first : first.url;
+// } else if (typeof output === "string") {
+//   resultUrl = output;
+// } else if ((output as any).url) {
+//   resultUrl = (output as any).url;
+// } else {
+//   throw new Error("Invalid Replicate output format");
+// }
+
 
 
 

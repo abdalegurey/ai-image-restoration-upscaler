@@ -121,6 +121,7 @@ if (!userId) {
 
         if (data.success && data.image) {
              toast.success("successfully restored")
+             console.log("result",result)
           setResult(data);
         } else {
           alert("Image processing failed");

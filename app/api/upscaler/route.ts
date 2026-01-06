@@ -37,14 +37,16 @@ export async function POST(req: Request) {
 
    // const resultimage= Array.isArray(output) ? output[0] : output;
 
-    let resultimage: string;
-if (Array.isArray(output)) {
- resultimage = output[0].url || output[0]; 
-} else if (output.url()) {
- resultimage = output.url();
-} else {
- resultimage = output.url() as string;
-}
+//     let resultimage: string;
+// if (Array.isArray(output)) {
+//  resultimage = output[0].url || output[0]; 
+// } else if (output.url()) {
+//  resultimage = output.url();
+// } else {
+//  resultimage = output.url() as string;
+// }
+
+const resultimage = (output as any).url();
    
      const id = randomUUID(); // 
 
