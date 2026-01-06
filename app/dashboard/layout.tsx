@@ -13,41 +13,26 @@ import {
   X,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { signOut, useSession } from "@/lib/auth-client";
+import { useSession } from "@/lib/auth-client";
 import { logout } from "@/server/logout";
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const [sidebarOpen, setSidebarOpen] = useState(false);
- 
 
-// const handleLogout = async () => {
-//   console.log("logout start");
+  const { data } = useSession(); // user session
 
-//   await signOut();
-
-//   console.log("logout finished");
-
-//   router.push("/login");
-// };
-
- const { data } = useSession(); // user session
-
-const logoutClick = async () => {
-  await logout();
-  window.location.href = "/login";
-};
-
-
-
+  // Single logout function
+  const logoutClick = async () => {
+    await logout();
+    window.location.href = "/login"; // redirect to login page
+  };
 
   return (
     <div className="flex min-h-screen bg-[#0A0A0F] text-white">
       {/* Sidebar for desktop */}
       <aside className="hidden md:flex w-64 flex-col border-r border-zinc-800 bg-zinc-950">
-      {/* <SidebarContent handleLogout={logoutClick} /> */}
-         <SidebarContent handleLogout={logoutClick} />
-
+        <SidebarContent handleLogout={logoutClick} />
       </aside>
 
       {/* Sidebar for mobile */}
@@ -62,19 +47,16 @@ const logoutClick = async () => {
                 <X size={24} />
               </button>
             </div>
-            <SidebarContent handleLogout={handleLogout} />
+            <SidebarContent handleLogout={logoutClick} />
           </div>
         </div>
       )}
 
-      {/* Main */}
+      {/* Main content */}
       <div className="flex-1 flex flex-col">
         {/* Topbar */}
         <header className="h-16 flex items-center justify-between px-6 border-b border-zinc-800 bg-zinc-900/60 backdrop-blur">
-          <button
-            className="md:hidden mr-2"
-            onClick={() => setSidebarOpen(true)}
-          >
+          <button className="md:hidden mr-2" onClick={() => setSidebarOpen(true)}>
             <Menu size={24} />
           </button>
           <h2 className="text-lg font-semibold">Dashboard</h2>
@@ -88,6 +70,7 @@ const logoutClick = async () => {
   );
 }
 
+// Sidebar component
 function SidebarContent({ handleLogout }: { handleLogout: () => void }) {
   return (
     <>
@@ -114,6 +97,7 @@ function SidebarContent({ handleLogout }: { handleLogout: () => void }) {
   );
 }
 
+// Sidebar link component
 function SidebarLink({ href, icon, label }: { href: string; icon: React.ReactNode; label: string }) {
   return (
     <Link
