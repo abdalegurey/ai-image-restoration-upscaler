@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
+import NextImage from "next/image";
+
 import { useSession } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
@@ -14,7 +15,8 @@ interface ResultUpscaler {
 /* ---------------- IMAGE RESIZE (MUHIIM) ---------------- */
 function resizeImage(file: File): Promise<string> {
   return new Promise((resolve, reject) => {
-    const img = new Image();
+  const img = new window.Image();
+
     const reader = new FileReader();
 
     reader.onload = () => {
@@ -191,13 +193,14 @@ function ImageCard({
       <p className="text-sm text-zinc-400 mb-2">{title}</p>
 
       <div className="relative aspect-square rounded-xl overflow-hidden mb-4">
-        <Image
-          src={src}
-          alt={title}
-          fill
-          unoptimized
-          className="object-cover"
-        />
+       <NextImage
+  src={src}
+  alt={title}
+  fill
+  unoptimized
+  className="object-cover"
+/>
+
       </div>
 
       {showActions && (
