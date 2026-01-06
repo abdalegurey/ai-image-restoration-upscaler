@@ -5,14 +5,13 @@ import { storeUpscaler } from "@/lib/database/upscaler";
 
 export const runtime = "nodejs";
 
-/* ---------------- REPLICATE CLIENT ---------------- */
+
 const replicate = new Replicate({
   auth: process.env.REPLICATE_API_TOKEN!,
 });
 
-/* ---------------- IMAGE SAFETY ---------------- */
 function safeImageUrl(url: string) {
-  // Haddii Cloudinary la isticmaalayo
+
   if (url.includes("cloudinary.com")) {
     return url.replace(
       "/upload/",
@@ -22,7 +21,7 @@ function safeImageUrl(url: string) {
   return url;
 }
 
-/* ---------------- API HANDLER ---------------- */
+
 export async function POST(req: Request) {
   try {
     const {
@@ -33,7 +32,7 @@ export async function POST(req: Request) {
       originalImage,
     } = await req.json();
 
-    /* ---------- VALIDATION ---------- */
+  
     if (!imageUrl) {
       return NextResponse.json(
         { error: "Image URL is required" },
@@ -48,11 +47,11 @@ export async function POST(req: Request) {
       );
     }
 
-    /* ---------- SAFETY CONTROLS ---------- */
+   
     const safeUrl = safeImageUrl(imageUrl);
-    const safeScale = scale > 2 ? 2 : scale; // 4x = GPU crash
+    const safeScale = scale > 2 ? 2 : scale; 
 
-    /* ---------- REPLICATE CALL ---------- */
+  
     const output = await replicate.run(
       "nightmareai/real-esrgan",
       {
@@ -65,17 +64,19 @@ export async function POST(req: Request) {
     );
 
     /* ---------- OUTPUT HANDLING ---------- */
-    let resultImage: string;
+    // let resultImage: string;
 
-    if (Array.isArray(output)) {
-      resultImage = output[0];
-    } else if ((output as any)?.url) {
-      resultImage = (output as any).url();
-    } else {
-      resultImage = output as string;
-    }
+    // if (Array.isArray(output)) {
+    //   resultImage = output[0];
+    // } else if ((output as any)?.url) {
+    //   resultImage = (output as any).url();
+    // } else {
+    //   resultI
+    // mage = output as string;
+    // }
 
-    /* ---------- STORE IN DB ---------- */
+    const resultImage = (output as any).url();
+ 
     const id = randomUUID();
 
     await storeUpscaler({
