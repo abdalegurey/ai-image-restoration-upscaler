@@ -1,3 +1,6 @@
+// /app/api/readaupscaler/route.ts
+export const dynamic = "force-dynamic";
+
 import { NextResponse } from "next/server";
 import { getUser } from "@/server/user";
 import { selectAllUpscalerByUser } from "@/lib/database/upscaler";
@@ -12,9 +15,9 @@ export async function GET() {
     }
 
     const allupscaler = await selectAllUpscalerByUser(userId);
-
     return NextResponse.json({ allupscaler });
   } catch (err) {
+    console.error(err);
     return NextResponse.json({ error: "Failed to fetch upscaler" }, { status: 500 });
   }
 }
