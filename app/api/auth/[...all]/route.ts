@@ -1,8 +1,8 @@
-// app/api/auth/[...all]/route.ts
 
-export const dynamic = "force-dynamic";
-export const runtime = "nodejs";
-export const revalidate = 0;
+
+// export const dynamic = "force-dynamic";
+// export const runtime = "nodejs";
+// export const revalidate = 0;
 
 import { auth } from "@/lib/auth";
 import { toNextJsHandler } from "better-auth/next-js";
