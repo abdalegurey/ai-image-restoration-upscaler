@@ -60,9 +60,11 @@ await storeRestore({
 
 
 });
+console.log("resultUrl resultUrlresultUrlresultUrlresultUrl",resultUrl)
     return NextResponse.json({ success: true, image: resultUrl });
   } catch (error) {
     console.error("Replicate error:", error);
+     console.log("error",error)
     return NextResponse.json(
       { success: false, message: "Image processing failed" },
       { status: 500 }

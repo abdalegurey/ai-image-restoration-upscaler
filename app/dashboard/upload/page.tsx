@@ -101,6 +101,11 @@ if (!userId) {
     const reader = new FileReader();
     reader.readAsDataURL(file);
 
+    console.log("📱 File info:", {
+    name: file.name,
+    size: file.size,
+    type: file.type,
+  });
     reader.onload = async () => {
       try {
         const res = await fetch("/api/restore", {
@@ -121,13 +126,14 @@ if (!userId) {
 
         if (data.success && data.image) {
              toast.success("successfully restored")
-             console.log("result",result)
+             console.log("result",result?.image)
           setResult(data);
         } else {
           alert("Image processing failed");
         }
-      } catch {
+      } catch (err){
         alert("Image processing failed");
+        console.log("errrrrrr",err)
       } finally {
         setLoading(false);
       }

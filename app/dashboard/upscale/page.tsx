@@ -63,11 +63,14 @@ export default function UpscalerPage() {
         if (data.url) {
           toast.success("Image upscaled!");
           setUpscaled(data.url);
+          console.log("upscale upscaledupscaledupscaled",upscaled)
         } else {
           alert("Upscale failed!");
         }
-      } catch {
+      } catch (err){
         alert("Upscale failed!");
+
+         console.log("errrrrrr",err)
       } finally {
         setLoading(false);
       }

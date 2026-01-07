@@ -56,10 +56,13 @@ const resultimage = (output as any).url();
   originalImage,
    upscalerImage:resultimage,
     })
+
+    console.log("resultimageresultimageresultimage",resultimage)
     return NextResponse.json({ url: resultimage });
 
   } catch (error: any) {
     console.error(error);
+    console.log("error",error)
     return NextResponse.json({ error: error.message || "Something went wrong" }, { status: 500 });
   }
 }
